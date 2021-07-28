@@ -1,9 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
+import firebase from "firebase";
+import { db, storage } from "../firebase";
 import "./Application.css";
 const ApplicationForm = () => {
+  const [name, setName] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const handleProfileUpload = (e) => {
+    if (e.target.files[0]) {
+      setProfileImage(e.target.files[0]);
+    }
+  };
+  const handleSubmit = () => {
+    const uploadTask = storage
+      .ref(`profile-images/${profileImage.name}`)
+      .put(profileImage);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        // progress function ...
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(progress);
+      },
+      (error) => {
+        // Error function ...
+        console.log(error);
+        alert(error.message);
+      },
+      () => {
+        // complete function ...
+        storage
+          .ref("profile-images")
+          .child(profileImage.name)
+          .getDownloadURL()
+          .then((url) => {
+            // post image inside db
+            db.collection("applications").add({
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+
+              imageUrl: url,
+              username: name,
+            });
+
+            setProfileImage(null);
+          });
+      }
+    );
+  };
   return (
     <div className="form">
-      <label htmlFor="distributor_id">DistributorId</label>
+      <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        type="text"
+      />
+      <progress value={progress} max="100" />
+      <input onChange={handleProfileUpload} type="file" name="" id="" />
+      <button onClick={handleSubmit}>Submit</button>
+      {/* <label htmlFor="distributor_id">DistributorId</label>
       <input type="text" />
       <label htmlFor="4life_distributor_ID_check">
         Have you ever held a 4life distributor ID?{" "}
@@ -44,8 +101,8 @@ const ApplicationForm = () => {
         Please submit a copy of Aadhaar Card & PAN Card for both applicants{" "}
       </h3>
       <label htmlFor="">Address</label>
-      <textarea />
-      {/* Please submit Address Proof */}
+     <input type="text" />
+       Please submit Address Proof 
       <label htmlFor="">City</label>
       <input type="text" />
       <label htmlFor="">State</label>
@@ -71,7 +128,7 @@ const ApplicationForm = () => {
       <input type="tel" />
       <h1>Distributor Shipping Address</h1>
       <label htmlFor="">Address</label>
-      <textarea />
+      <input type="text" />
       <label htmlFor="">City</label>
       <input type="text" />
       <label htmlFor="">State</label>
@@ -92,11 +149,11 @@ const ApplicationForm = () => {
       <label htmlFor="">Name of the Bank</label>
       <input type="text" />
       <label htmlFor="">Branch Name & Address</label>
-      <textarea />
+      <input type="text" />
       <label htmlFor="">Account Number</label>
       <input type="text" />
       <label htmlFor="">Bank IFSC Code:</label>
-      <input type="text" />
+      <input type="text" /> */}
       {/* Please attch copy of cancelled cheque */}
     </div>
   );
