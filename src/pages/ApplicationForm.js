@@ -26,7 +26,7 @@ const ApplicationForm = () => {
   const [applicantAadharNumber, setApplicantAadharNumber] = useState("");
   const [applicantPanNumber, setApplicantPanNumber] = useState("");
   const [coApplicantName, setCoApplicantName] = useState("");
-  const [coApplicantAadharName, setCoApplicantAadharName] = useState("");
+  const [coApplicantAadharNumber, setCoApplicantAadharNumber] = useState("");
   const [coApplicantPanNumber, setCoApplicantPanNumber] = useState("");
   const [address, setAddress] = useState("");
   const [pincode, setPinCode] = useState("");
@@ -57,6 +57,34 @@ const ApplicationForm = () => {
 
   const [profileImageUrl, setProfileImageUrl] = useState("");
   const [profileImageString, setProfileImageString] = useState("");
+
+  const [applicantAadharUrl, setApplicantAadharUrl] = useState("");
+  const [applicantAadharString, setApplicantAadharString] = useState("");
+
+  const [applicantPANUrl, setApplicantPANUrl] = useState("");
+  const [applicantPANString, setApplicantPANString] = useState("");
+
+  const [coApplicantAadharUrl, setCoApplicantAadharUrl] = useState("");
+  const [coApplicantAadharString, setCoApplicantAadharString] = useState("");
+
+  const [coApplicantPANUrl, setCoApplicantPANUrl] = useState("");
+  const [coApplicantPANString, setCoApplicantPANString] = useState("");
+
+  const [addressProofUrl, setAddressProofUrl] = useState("");
+  const [addressProofString, setAddressProofString] = useState("");
+
+  const [applicantSignatureUrl, setApplicantSignatureUrl] = useState("");
+  const [applicantSignatureString, setApplicantSignatureString] = useState("");
+
+  const [coApplicantSignatureUrl, setCoApplicantSignatureUrl] = useState("");
+  const [coApplicantSignatureString, setCoApplicantSignatureString] =
+    useState("");
+
+  const [applicantChequeOrPassbookUrl, setApplicantChequeOrPassbookUrl] =
+    useState("");
+  const [applicantChequeOrPassbookString, setApplicantChequeOrPassbookString] =
+    useState("");
+
   console.log(profileImageUrl);
   console.log(profileImage);
   const handleProfileUpload = (e) => {
@@ -120,6 +148,14 @@ const ApplicationForm = () => {
   }
   useEffect(() => {
     setProfileImageString(generateString(5));
+    setApplicantAadharString(generateString(5));
+    setApplicantPANString(generateString(5));
+    setCoApplicantAadharString(generateString(5));
+    setCoApplicantPANString(generateString(5));
+    setAddressProofString(generateString(5));
+    setApplicantSignatureString(generateString(5));
+    setCoApplicantSignatureString(generateString(5));
+    setApplicantChequeOrPassbookString(generateString(5));
   }, []);
 
   const profileImageUpload = (e) => {
@@ -149,6 +185,290 @@ const ApplicationForm = () => {
       }
     );
   };
+  const ApplicantAadharUpload = (e) => {
+    e.preventDefault();
+
+    const uploadProfileImageTask = storage
+      .ref(`applicant-aadhar/${applicantAadharString}`)
+      .put(applicantAadhar);
+
+    uploadProfileImageTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        // Error function ...
+        console.log(error);
+        alert(error.message);
+      },
+      () => {
+        // complete function ...
+        storage
+          .ref("applicant-aadhar")
+          .child(applicantAadharString)
+          .getDownloadURL()
+          .then((url) => {
+            setApplicantAadharUrl(url);
+          });
+      }
+    );
+  };
+  const ApplicantPANUpload = (e) => {
+    e.preventDefault();
+
+    const uploadProfileImageTask = storage
+      .ref(`applicant-PAN/${applicantPANString}`)
+      .put(applicantPAN);
+
+    uploadProfileImageTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        // Error function ...
+        console.log(error);
+        alert(error.message);
+      },
+      () => {
+        // complete function ...
+        storage
+          .ref("applicant-PAN")
+          .child(applicantPANString)
+          .getDownloadURL()
+          .then((url) => {
+            setApplicantPANUrl(url);
+          });
+      }
+    );
+  };
+  const CoApplicantAadharUpload = (e) => {
+    e.preventDefault();
+
+    const uploadProfileImageTask = storage
+      .ref(`co-applicant-aadhar/${coApplicantAadharString}`)
+      .put(coApplicantAadhar);
+
+    uploadProfileImageTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        // Error function ...
+        console.log(error);
+        alert(error.message);
+      },
+      () => {
+        // complete function ...
+        storage
+          .ref("co-applicant-aadhar")
+          .child(coApplicantAadharString)
+          .getDownloadURL()
+          .then((url) => {
+            setCoApplicantAadharUrl(url);
+          });
+      }
+    );
+  };
+  const CoApplicantPANUpload = (e) => {
+    e.preventDefault();
+
+    const uploadProfileImageTask = storage
+      .ref(`co-applicant-PAN/${coApplicantPANString}`)
+      .put(coApplicantPAN);
+
+    uploadProfileImageTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        // Error function ...
+        console.log(error);
+        alert(error.message);
+      },
+      () => {
+        // complete function ...
+        storage
+          .ref("co-applicant-PAN")
+          .child(coApplicantPANString)
+          .getDownloadURL()
+          .then((url) => {
+            setCoApplicantPANUrl(url);
+          });
+      }
+    );
+  };
+
+  const AddressProofUpload = (e) => {
+    e.preventDefault();
+
+    const uploadProfileImageTask = storage
+      .ref(`address-proof/${addressProofString}`)
+      .put(addressProof);
+
+    uploadProfileImageTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        // Error function ...
+        console.log(error);
+        alert(error.message);
+      },
+      () => {
+        // complete function ...
+        storage
+          .ref("address-proof")
+          .child(addressProofString)
+          .getDownloadURL()
+          .then((url) => {
+            setAddressProofUrl(url);
+          });
+      }
+    );
+  };
+  const ApplicantSignatureUpload = (e) => {
+    e.preventDefault();
+
+    const uploadProfileImageTask = storage
+      .ref(`applicant-signature/${applicantSignatureString}`)
+      .put(applicantSignature);
+
+    uploadProfileImageTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        // Error function ...
+        console.log(error);
+        alert(error.message);
+      },
+      () => {
+        // complete function ...
+        storage
+          .ref("applicant-signature")
+          .child(applicantSignatureString)
+          .getDownloadURL()
+          .then((url) => {
+            setApplicantSignatureUrl(url);
+          });
+      }
+    );
+  };
+  const CoApplicantSignatureUpload = (e) => {
+    e.preventDefault();
+
+    const uploadProfileImageTask = storage
+      .ref(`Co-Applicant-signature/${coApplicantSignatureString}`)
+      .put(coApplicantSignature);
+
+    uploadProfileImageTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        // Error function ...
+        console.log(error);
+        alert(error.message);
+      },
+      () => {
+        // complete function ...
+        storage
+          .ref("Co-Applicant-signature")
+          .child(coApplicantSignatureString)
+          .getDownloadURL()
+          .then((url) => {
+            setCoApplicantSignatureUrl(url);
+          });
+      }
+    );
+  };
+  const ApplicantChequeOrPassbookUpload = (e) => {
+    e.preventDefault();
+
+    const uploadProfileImageTask = storage
+      .ref(
+        `Applicant-cancelled-cheque-or-passbook/${applicantChequeOrPassbookString}`
+      )
+      .put(chequeOrPassbook);
+
+    uploadProfileImageTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        // Error function ...
+        console.log(error);
+        alert(error.message);
+      },
+      () => {
+        // complete function ...
+        storage
+          .ref("Co-Applicant-signature")
+          .child(applicantChequeOrPassbookString)
+          .getDownloadURL()
+          .then((url) => {
+            setApplicantChequeOrPassbookUrl(url);
+          });
+      }
+    );
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // setLoader(true);
+    let DistributorID = generateString(10);
+    db.collection("applications")
+      .add({
+        distributorId: DistributorID,
+        held_DistributorID: distributor_id_checked,
+        OldDistributorID: oldDistributorID,
+        fssai_registration_check: fssai_reg_check,
+        fssai_registration_Number: fssaiRegistrationNumber,
+        profileImage: profileImageUrl,
+        applicationType: applicationType,
+        applicantName: applicantName,
+        applicantAadharNumber: applicantAadharNumber,
+        applicant_PAN_Number: applicantPanNumber,
+        coApplicantName: coApplicantName,
+        coApplicantAadharNumber: coApplicantAadharNumber,
+        coApplicant_PAN_Number: coApplicantPanNumber,
+        applicantAadharFile: applicantAadharUrl,
+        applicantPanFile: applicantPANUrl,
+        coApplicantAadharFile: coApplicantAadharUrl,
+        coApplicantPanFile: coApplicantPANUrl,
+        applicantAddress: address,
+        applicantAddressProofFile: addressProofUrl,
+        applicant_city: city,
+        applicant_state: state,
+        applicant_pincode: pincode,
+        applicant_dateOfBirth: applicantDateOFBirth,
+        applicant_email: applicantEmail,
+        applicant_home_phone: applicantHomePhone,
+        applicantMobile: applicantMobile,
+        applicantWorkPhone: applicantWorkPhone,
+        distributor_shipping_address: distributorShippingAddress,
+        distributorCity: distributorCity,
+        distributorPinCode: distributorPinCode,
+        distributorState: distributorState,
+        enrollerName: enrollerName,
+        enrollerid: enrollerid,
+        sponserId: sponserId,
+        sponserName: sponserName,
+        name_of_bank: nameoftheBank,
+        branchNameAddress: branchNameAddress,
+        accountNumber: accountNumber,
+        ifscCode: bankIFSCCode,
+        cancelledChequeOrPassbookFile: applicantChequeOrPassbookUrl,
+        applicantSignatureFile: applicantSignatureUrl,
+        coApplicantSignatureFile: coApplicantSignatureUrl,
+      })
+      .then(() => {
+        // setLoader(false);
+        alert("Your Application has been submitted👍");
+      })
+      .catch((error) => {
+        alert(error.message);
+        // setLoader(false);
+      });
+
+    // setName("");
+    // setEmail("");
+    // setProblem("");
+    // setContact("");
+  };
+
   return (
     <div className="form">
       <form action="" className="form">
@@ -224,8 +544,8 @@ const ApplicationForm = () => {
         <label htmlFor="">Aadhar Number</label>
         <input
           type="text"
-          value={coApplicantAadharName}
-          onChange={(e) => setCoApplicantAadharName(e.target.value)}
+          value={coApplicantAadharNumber}
+          onChange={(e) => setCoApplicantAadharNumber(e.target.value)}
         />
         <label htmlFor="">PAN Number</label>
         <input
@@ -243,6 +563,7 @@ const ApplicationForm = () => {
             name=""
             id=""
           />
+          <button onClick={ApplicantAadharUpload}>Upload</button>
           <h3>Upload Applicant PAN</h3>
           <input
             onChange={handleApplicantPANUpload}
@@ -250,6 +571,7 @@ const ApplicationForm = () => {
             name=""
             id=""
           />
+          <button onClick={ApplicantPANUpload}>Upload</button>
           <h3>Upload Co-Applicant Aadhar</h3>
           <input
             onChange={handleCoApplicantAadharUpload}
@@ -257,6 +579,7 @@ const ApplicationForm = () => {
             name=""
             id=""
           />
+          <button onClick={CoApplicantAadharUpload}>Upload</button>
           <h3>Upload Co-Applicant PAN</h3>
           <input
             onChange={handleCoApplicantPANUpload}
@@ -264,6 +587,7 @@ const ApplicationForm = () => {
             name=""
             id=""
           />
+          <button onClick={CoApplicantPANUpload}>Upload</button>
         </h3>
         <label htmlFor="">Address</label>
         <input
@@ -280,6 +604,7 @@ const ApplicationForm = () => {
             name=""
             id=""
           />
+          <button onClick={AddressProofUpload}>Upload</button>
         </h3>
         <label htmlFor="">City</label>
         <input
@@ -418,6 +743,7 @@ const ApplicationForm = () => {
             name=""
             id=""
           />
+          <button onClick={ApplicantChequeOrPassbookUpload}>Upload</button>
         </h3>
         <h3>
           Applicant Signature
@@ -428,6 +754,7 @@ const ApplicationForm = () => {
             name=""
             id=""
           />
+          <button onClick={ApplicantSignatureUpload}>Upload</button>
         </h3>
         <h3>
           Co-Applicant Signature
@@ -438,10 +765,11 @@ const ApplicationForm = () => {
             name=""
             id=""
           />
+          <button onClick={CoApplicantSignatureUpload}>Upload</button>
         </h3>
-        {/* <button type="submit" onClick={handleSubmit}>
+        <button type="submit" onClick={handleSubmit}>
           Submit
-        </button> */}
+        </button>
       </form>
     </div>
   );
