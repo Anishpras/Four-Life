@@ -159,26 +159,32 @@ const [bankIFSCCode ,setBankIFSCCode] = useState("")
         </select>
         <label htmlFor="">Applicant Name</label>
         <input type="text"
+        value={applicantName}
         onChange={(e) => setApplicantName(e.target.value)}
         />
         <label htmlFor="">Aadhar Number</label>
         <input type="text" 
+        value={applicantAadharNumber}
         onChange={(e) => setApplicantAadharNumber(e.target.value)}
         />
         <label htmlFor="">PAN Number</label>
         <input type="text" 
+        value={applicantPanNumber}
         onChange={(e)=> setApplicantPanNumber(e.target.value) }
         />
         <label htmlFor="">Co-Applicant Name</label>
         <input type="text" 
+        value={coApplicantName}
         onChange={(e)=> setCoApplicantName(e.target.value)}
         />
         <label htmlFor="">Aadhar Number</label>
         <input type="text"
+        value={coApplicantAadharName }
         onChange={(e)=> setCoApplicantAadharName(e.target.value)}
         />
         <label htmlFor="">PAN Number</label>
         <input type="text" 
+        value={coApplicantPanNumber }
         onChange={(e)=> setCoApplicantPanNumber(e.target.value)}
         />
         <h3>
@@ -186,23 +192,28 @@ const [bankIFSCCode ,setBankIFSCCode] = useState("")
         </h3>
         <label htmlFor="">Address</label>
         <input type="text" 
+        value={address}
         onChange={(e)=> setAddress(e.target.value)}
         />
         Please submit Address Proof
         <label htmlFor="">City</label>
         <input type="text"
+        value={city}
         onChange={(e)=> setCity(e.target.value)}
         />
         <label htmlFor="">State</label>
         <input type="text" 
+        value={state}
         onChange={(e)=> setState(e.target.value)}
         />
         <label htmlFor="">Pin Code</label>
         <input type="text" 
+        value={pincode}
         onChange={(e)=> setPinCode(e.target.value)}
         />
         <label htmlFor="">Date of Birth</label>
         <input
+      
         style={{"min-height":"2rem"}}
         className="date"
           type="date"
@@ -216,19 +227,23 @@ const [bankIFSCCode ,setBankIFSCCode] = useState("")
         />
         <label htmlFor="">EMAIL</label>
         <input type="email" 
+        value={applicantEmail}
         onChange={(e) => setApplicantEmail(e.target.value)}
         />
         <label htmlFor="">Home Phone</label>
         <input type="tel" name="" id="" 
+        value={applicantHomePhone} 
         onChange={(e) => setApplicantHomePhone(e.target.value)}
         />
         <label htmlFor="">Mobile: +91</label>
         <input type="tel"
+        value={applicantMobile}
         onChange={(e) => setApplicantMobile(e.target.value)}
         
         />
         <label htmlFor="">Work Phone</label>
         <input type="tel"
+        value={applicantWorkPhone}
         onChange={(e) => setApplicantWorkPhone(e.target.value)}
         />
 
@@ -238,18 +253,22 @@ const [bankIFSCCode ,setBankIFSCCode] = useState("")
         <h1>Distributor Shipping Address</h1>
         <label htmlFor="">Address</label>
         <input type="text" 
+        value={distributorShippingAddress}
         onChange={(e) =>setDistributorShippingAddress(e.target.value)}
         />
         <label htmlFor="">City</label>
         <input type="text" 
+        value={distributorCity}
         onChange={(e) => setDistributorCity(e.target.value)} 
         />
         <label htmlFor="">State</label>
         <input type="text" 
+        value={distributorState}
         onChange={(e) => setDistributorState(e.target.value)} 
          />
         <label htmlFor="">Pin Code</label>
         <input type="text"
+        value={distributorPinCode}
         onChange={(e) =>   setDistributorPinCode(e.target.value)}
         />
 
@@ -258,10 +277,12 @@ const [bankIFSCCode ,setBankIFSCCode] = useState("")
         <h1>Enroller Information</h1>
         <label htmlFor="">Enroller's id</label>
         <input type="text" 
+        value={enrollerid}
         onChange={(e) => setEnrollerId(e.target.value) }
         />
         <label htmlFor="">Name</label>
         <input type="text"
+        value={enrollerName}
         onChange={(e) => setEnrollerName(e.target.value)}
         />
 
@@ -269,28 +290,34 @@ const [bankIFSCCode ,setBankIFSCCode] = useState("")
         <h1>Sponser Information</h1>
         <label htmlFor="">Sponser's id</label>
         <input type="text" 
+        value={sponserId}
         onChange={(e) => setSponserId(e.target.value) }
         
         />
         <label htmlFor="">Name</label>
         <input type="text" 
+        value={sponserName}
         onChange={(e) => setSponserName(e.target.value)}
         />
         <h1>Commision Payment Information</h1>
         <label htmlFor="">Name of the Bank</label>
-        <input type="text"  
+        <input type="text" 
+        value={nameoftheBank} 
         onChange={(e) => setNameOfTheBank(e.target.value) }
         />
         <label htmlFor="">Branch Name & Address</label>
         <input type="text" 
+        value={branchNameAddress}
         onChange={(e) =>  setBranchNameAddress(e.target.value)}
         />
         <label htmlFor="">Account Number</label>
         <input type="text"
+        value={accountNumber}
         onChange={(e) => setAccountNumber(e.target.value)}
         />
         <label htmlFor="">Bank IFSC Code:</label>
         <input type="text" 
+        value={bankIFSCCode}
         onChange={(e) => setBankIFSCCode(e.target.value)}
         /> 
         {/* Please attch copy of cancelled cheque */}
