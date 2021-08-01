@@ -3,7 +3,6 @@ import firebase from "firebase";
 import { db, storage } from "../firebase";
 import "./Application.css";
 const ApplicationForm = () => {
-  // const [name, setName] = useState("");
   const [profileImage, setProfileImage] = useState(null);
   // const [progress, setProgress] = useState(0);
   // const [progressAadhar, setProgressAadhar] = useState(0);
@@ -453,6 +452,7 @@ const ApplicationForm = () => {
         cancelledChequeOrPassbookFile: applicantChequeOrPassbookUrl,
         applicantSignatureFile: applicantSignatureUrl,
         coApplicantSignatureFile: coApplicantSignatureUrl,
+        timeOfApplication: firebase.firestore.FieldValue.serverTimestamp(),
       })
       .then(() => {
         // setLoader(false);
