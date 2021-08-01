@@ -453,6 +453,7 @@ const ApplicationForm = () => {
         applicantSignatureFile: applicantSignatureUrl,
         coApplicantSignatureFile: coApplicantSignatureUrl,
         timeOfApplication: firebase.firestore.FieldValue.serverTimestamp(),
+        status: false,
       })
       .then(() => {
         // setLoader(false);
