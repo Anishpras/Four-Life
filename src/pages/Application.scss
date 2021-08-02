@@ -1,0 +1,220 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 92vw;
+  padding: 10px;
+  &__inputnone {
+    border: none;
+    border-bottom: none !important;
+  }
+  input {
+    border: none;
+    border-bottom: 1px solid;
+  }
+  input :focus-within {
+    border: none;
+    border-bottom: 1px solid;
+  }
+  .header {
+    &__left {
+      float: left;
+      display: flex;
+      flex-direction: column;
+    }
+    &__right {
+      float: right;
+    }
+    &__rightWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      p {
+        font-size: 10px;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+  h1 {
+    background-color: #4546d5;
+    color: white;
+    width: 75vw;
+    /* display: flex; */
+    /* align-items: end; */
+    /* justify-content: center; */
+    padding: 3px 10px;
+    border-radius: 10px;
+  }
+  &__FormWrapper {
+  }
+  &__firstPart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    img {
+      width: 128px;
+      height: 128px;
+    }
+    select {
+      width: 90px;
+    }
+  }
+  &__firtpartright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+  }
+  &__firstpartbutton {
+    display: flex;
+  }
+  &__firstPartLeft {
+    display: flex;
+    flex-direction: column;
+    width: 37%;
+  }
+  &__firstPartleftTop {
+    display: flex;
+    flex-direction: column;
+
+    margin: 18px 0px;
+  }
+  &__firstPartleftBottom {
+    display: flex;
+    flex-direction: column;
+  }
+  .applicantinfo {
+    display: flex;
+    flex-direction: column;
+    label {
+      padding: 0px 10px;
+    }
+    select {
+      width: 90px;
+    }
+    &__address {
+      display: flex;
+      flex-direction: column;
+    }
+    &__applicantDetail {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0px;
+      @media (max-width: 768px) {
+        flex-direction: column;
+        div {
+          padding: 8px 0px;
+        }
+      }
+    }
+    &__coApplicantinfo {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0px;
+      @media (max-width: 768px) {
+        flex-direction: column;
+        div {
+          padding: 8px 0px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+      }
+    }
+    &__bottom {
+      input {
+        width: 83vw;
+      }
+    }
+    &__state {
+      display: flex;
+      justify-content: space-between;
+      margin: 16px 0px;
+    }
+    &__dateOfBirth {
+      display: flex;
+      justify-content: space-between;
+      margin: 16px 0px;
+    }
+    &__homePhone {
+      display: flex;
+      justify-content: space-between;
+      margin: 16px 0px;
+      display: flex;
+    }
+  }
+  .distributorshippingaddress {
+    label {
+      padding: 0px 10px;
+    }
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      div {
+        padding: 11px 0px;
+      }
+    }
+    &__address {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .enrollerinformation {
+    label {
+      padding: 0px 10px;
+    }
+    &__wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .sponserinformation {
+    label {
+      padding: 0px 10px;
+    }
+    &__wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .commisionpaymentinformation {
+    label {
+      padding: 0px 10px;
+    }
+    &__wrapper {
+      display: flex;
+      justify-content: space-between;
+      margin: 16px 0px;
+    }
+    &__wrapper1 {
+      border: 1px solid;
+      padding: 10px;
+    }
+  }
+  .final__signature {
+    display: flex;
+    justify-content: space-between;
+  }
+  .final__submit {
+    background-color: #33a833;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    width: 100px;
+    margin: 7px 46%;
+    font-size: 18px;
+  }
+  .undertaking {
+    padding:10px 0px ;
+    display: flex;
+    align-items: center;
+    p{
+      padding: 0px 14px;
+    }
+    &__wrapper {
+      border: 1px solid;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase";
 import { db, storage } from "../firebase";
-import "./Application.css";
+import "./Application.scss";
 const ApplicationForm = () => {
   const [profileImage, setProfileImage] = useState(null);
   // const [progress, setProgress] = useState(0);
@@ -408,6 +408,7 @@ const ApplicationForm = () => {
     e.preventDefault();
     // setLoader(true);
     let DistributorID = generateString(10);
+    console.log(DistributorID);
     db.collection("applications")
       .add({
         distributorId: DistributorID,
@@ -472,306 +473,484 @@ const ApplicationForm = () => {
 
   return (
     <div className="form">
-      <form action="" className="form">
-        <label htmlFor="4life_distributor_ID_check">
-          Have you ever held a 4life distributor ID?{" "}
-        </label>
-        <select onChange={(e) => setDistributor_Id_checked(e.target.value)}>
-          <option value="no">No</option>
-          <option value="yes">Yes</option>
-        </select>
-        {distributor_id_checked === "yes" && (
-          <>
-            <label htmlFor="old_id">If Yes, Old Id</label>
-            <input
-              type="text"
-              value={oldDistributorID}
-              onChange={(e) => setOldDistributorID(e.target.value)}
-            />
-          </>
-        )}
-        <label htmlFor="4life_fssai_reg_check">
-          Do you have a FSSAI registration no ?{" "}
-        </label>
-        <select onChange={(e) => setFssai_reg_check(e.target.value)}>
-          <option value="no">No</option>
-          <option value="yes">Yes</option>
-        </select>
-        {fssai_reg_check === "yes" && (
-          <>
-            <label htmlFor="old_id">If Yes, FSSAI registration No.</label>
-            <input
-              type="text"
-              value={fssaiRegistrationNumber}
-              onChange={(e) => setFssaiRegistrationNumber(e.target.value)}
-            />
-          </>
-        )}
-        <h3>
-          <h3>Upload Profile Image</h3>
-          <input onChange={handleProfileUpload} type="file" name="" id="" />
-          <button onClick={profileImageUpload}>Upload</button>
-        </h3>
-        {/* ----------------------------- */}
-        <h1>Applicant Information</h1>
-        <select onChange={(e) => setApplicationType(e.target.value)}>
-          <option value="Individual">Individual</option>
-          <option value="Company">Company*</option>
-        </select>
-        <label htmlFor="">Applicant Name</label>
-        <input
-          type="text"
-          value={applicantName}
-          onChange={(e) => setApplicantName(e.target.value)}
-        />
-        <label htmlFor="">Aadhar Number</label>
-        <input
-          type="text"
-          value={applicantAadharNumber}
-          onChange={(e) => setApplicantAadharNumber(e.target.value)}
-        />
-        <label htmlFor="">PAN Number</label>
-        <input
-          type="text"
-          value={applicantPanNumber}
-          onChange={(e) => setApplicantPanNumber(e.target.value)}
-        />
-        <label htmlFor="">Co-Applicant Name</label>
-        <input
-          type="text"
-          value={coApplicantName}
-          onChange={(e) => setCoApplicantName(e.target.value)}
-        />
-        <label htmlFor="">Aadhar Number</label>
-        <input
-          type="text"
-          value={coApplicantAadharNumber}
-          onChange={(e) => setCoApplicantAadharNumber(e.target.value)}
-        />
-        <label htmlFor="">PAN Number</label>
-        <input
-          type="text"
-          value={coApplicantPanNumber}
-          onChange={(e) => setCoApplicantPanNumber(e.target.value)}
-        />
-        <h3>
-          Please submit a copy of Aadhaar Card & PAN Card for both applicants.
-          <h3>Upload Applicant Aadhar</h3>
-          {/* <progress value={progressAadhar} max="100" /> */}
-          <input
-            onChange={handleApplicantAadharUpload}
-            type="file"
-            name=""
-            id=""
-          />
-          <button onClick={ApplicantAadharUpload}>Upload</button>
-          <h3>Upload Applicant PAN</h3>
-          <input
-            onChange={handleApplicantPANUpload}
-            type="file"
-            name=""
-            id=""
-          />
-          <button onClick={ApplicantPANUpload}>Upload</button>
-          <h3>Upload Co-Applicant Aadhar</h3>
-          <input
-            onChange={handleCoApplicantAadharUpload}
-            type="file"
-            name=""
-            id=""
-          />
-          <button onClick={CoApplicantAadharUpload}>Upload</button>
-          <h3>Upload Co-Applicant PAN</h3>
-          <input
-            onChange={handleCoApplicantPANUpload}
-            type="file"
-            name=""
-            id=""
-          />
-          <button onClick={CoApplicantPANUpload}>Upload</button>
-        </h3>
-        <label htmlFor="">Address</label>
-        <input
-          type="text"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
-        <h3>
-          Submit Address Proof
-          <h3>Upload Address proof</h3>
-          <input
-            onChange={handleAddressProofUpload}
-            type="file"
-            name=""
-            id=""
-          />
-          <button onClick={AddressProofUpload}>Upload</button>
-        </h3>
-        <label htmlFor="">City</label>
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-        <label htmlFor="">State</label>
-        <input
-          type="text"
-          value={state}
-          onChange={(e) => setState(e.target.value)}
-        />
-        <label htmlFor="">Pin Code</label>
-        <input
-          type="text"
-          value={pincode}
-          onChange={(e) => setPinCode(e.target.value)}
-        />
-        <label htmlFor="">Date of Birth</label>
-        <input
-          style={{ "min-height": "2rem" }}
-          type="date"
-          value={applicantDateOFBirth}
-          onChange={(e) => setApplicantDateOFBirth(e.target.value)}
-        />
-        <label htmlFor="">EMAIL</label>
-        <input
-          type="email"
-          value={applicantEmail}
-          onChange={(e) => setApplicantEmail(e.target.value)}
-        />
-        <label htmlFor="">Home Phone</label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-          value={applicantHomePhone}
-          onChange={(e) => setApplicantHomePhone(e.target.value)}
-        />
-        <label htmlFor="">Mobile: +91</label>
-        <input
-          type="tel"
-          value={applicantMobile}
-          onChange={(e) => setApplicantMobile(e.target.value)}
-        />
-        <label htmlFor="">Work Phone</label>
-        <input
-          type="tel"
-          value={applicantWorkPhone}
-          onChange={(e) => setApplicantWorkPhone(e.target.value)}
-        />
-        <h1>Distributor Shipping Address</h1>
-        <label htmlFor="">Address</label>
-        <input
-          type="text"
-          value={distributorShippingAddress}
-          onChange={(e) => setDistributorShippingAddress(e.target.value)}
-        />
-        <label htmlFor="">City</label>
-        <input
-          type="text"
-          value={distributorCity}
-          onChange={(e) => setDistributorCity(e.target.value)}
-        />
-        <label htmlFor="">State</label>
-        <input
-          type="text"
-          value={distributorState}
-          onChange={(e) => setDistributorState(e.target.value)}
-        />
-        <label htmlFor="">Pin Code</label>
-        <input
-          type="text"
-          value={distributorPinCode}
-          onChange={(e) => setDistributorPinCode(e.target.value)}
-        />
-        <h1>Enroller Information</h1>
-        <label htmlFor="">Enroller's id</label>
-        <input
-          type="text"
-          value={enrollerid}
-          onChange={(e) => setEnrollerId(e.target.value)}
-        />
-        <label htmlFor="">Name</label>
-        <input
-          type="text"
-          value={enrollerName}
-          onChange={(e) => setEnrollerName(e.target.value)}
-        />
-        <h1>Sponser Information</h1>
-        <label htmlFor="">Sponser's id</label>
-        <input
-          type="text"
-          value={sponserId}
-          onChange={(e) => setSponserId(e.target.value)}
-        />
-        <label htmlFor="">Name</label>
-        <input
-          type="text"
-          value={sponserName}
-          onChange={(e) => setSponserName(e.target.value)}
-        />
-        <h1>Commision Payment Information</h1>
-        <label htmlFor="">Name of the Bank</label>
-        <input
-          type="text"
-          value={nameoftheBank}
-          onChange={(e) => setNameOfTheBank(e.target.value)}
-        />
-        <label htmlFor="">Branch Name & Address</label>
-        <input
-          type="text"
-          value={branchNameAddress}
-          onChange={(e) => setBranchNameAddress(e.target.value)}
-        />
-        <label htmlFor="">Account Number</label>
-        <input
-          type="text"
-          value={accountNumber}
-          onChange={(e) => setAccountNumber(e.target.value)}
-        />
-        <label htmlFor="">Bank IFSC Code:</label>
-        <input
-          type="text"
-          value={bankIFSCCode}
-          onChange={(e) => setBankIFSCCode(e.target.value)}
-        />
-        <h3>
-          Please attch copy of cancelled cheque or bank passbook
-          <h3>Upload copy of cancelled cheque of bank passbook</h3>
-          <input
-            onChange={handleChequeOrPassbookUpload}
-            type="file"
-            name=""
-            id=""
-          />
-          <button onClick={ApplicantChequeOrPassbookUpload}>Upload</button>
-        </h3>
-        <h3>
-          Applicant Signature
-          <h3>Upload Applicant Signature</h3>
-          <input
-            onChange={handleApplicantSignatureUpload}
-            type="file"
-            name=""
-            id=""
-          />
-          <button onClick={ApplicantSignatureUpload}>Upload</button>
-        </h3>
-        <h3>
-          Co-Applicant Signature
-          <h3>Upload Co-Applicant Signature</h3>
-          <input
-            onChange={handleCoApplicantSignatureUpload}
-            type="file"
-            name=""
-            id=""
-          />
-          <button onClick={CoApplicantSignatureUpload}>Upload</button>
-        </h3>
-        <button type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-      </form>
+      <div className="header">
+        <div className="header__left">
+          <h2>4Life</h2>
+{/*          <span>
+            <a href="www.india.4life.com">www.india.4life.com</a>
+</span> */}
+        </div>
+
+        <div className="header__right">
+          {" "}
+          <h1>India Distributor Application and Agreement</h1>
+          <div className="header__rightWrapper">
+            <p>
+              <h2>FORLIFE TRADING INDIA PVT.LTD.</h2>
+              <span>
+                Office No.808, 6th Floor, A Wing, Kanakia Wall Street,
+              </span>
+              <span> Andheri Kurta Road,Andhari(East),Mumbai-400 093</span>
+            </p>
+            <p>
+              <span>Toll Free: 1800-102-0502</span>
+              <span>BoardLine:022-2093-2700 </span>
+              <span> </span>
+              <span></span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="form__main">
+        <form action="" className="form__FormWrapper">
+          <div className="form__firstPart">
+            <div className="form__firstPartLeft">
+              <div className="form__firstPartleftTop">
+                <label htmlFor="4life_distributor_ID_check">
+                  Have you ever held a 4life distributor ID?{" "}
+                </label>
+                <select
+                  onChange={(e) => setDistributor_Id_checked(e.target.value)}
+                >
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+                </select>
+                {distributor_id_checked === "yes" && (
+                  <>
+                    <label htmlFor="old_id">If Yes, Old Id</label>
+                    <input
+                      type="text"
+                      value={oldDistributorID}
+                      onChange={(e) => setOldDistributorID(e.target.value)}
+                    />
+                  </>
+                )}
+              </div>
+              <div className="form__firstPartleftBottom">
+                <label htmlFor="4life_fssai_reg_check">
+                  Do you have a FSSAI registration no ?{" "}
+                </label>
+                <select onChange={(e) => setFssai_reg_check(e.target.value)}>
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+                </select>
+                {fssai_reg_check === "yes" && (
+                  <>
+                    <label htmlFor="old_id">
+                      If Yes, FSSAI registration No.
+                    </label>
+                    <input
+                      type="text"
+                      value={fssaiRegistrationNumber}
+                      onChange={(e) =>
+                        setFssaiRegistrationNumber(e.target.value)
+                      }
+                    />
+                  </>
+                )}
+              </div>
+            </div>
+            <div className="form__firtpartright">
+              <h3>Upload Profile Image</h3>
+              <img
+                className="form__firstImg"
+                src={profileImageUrl}
+                alt="Upload Profile Image"
+              />
+              <div className="form__firstpartbutton">
+                <input
+                  onChange={handleProfileUpload}
+                  type="file"
+                  className="form__inputnone"
+                  name=""
+                  id=""
+                />
+                <button onClick={profileImageUpload}>Upload</button>
+              </div>
+            </div>
+          </div>
+          <div className="applicantinfo">
+            <h1>Applicant Information</h1>
+            <select onChange={(e) => setApplicationType(e.target.value)}>
+              <option value="Individual">Individual</option>
+              <option value="Company">Company*</option>
+            </select>
+            <div className="applicantinfo__address">
+              <div className="applicantinfo__name">
+                <label htmlFor="">Applicant Name</label>
+                <input
+                  type="text"
+                  value={applicantName}
+                  onChange={(e) => setApplicantName(e.target.value)}
+                />
+              </div>
+              <div className="applicantinfo__applicantDetail">
+                <div>
+                  <label htmlFor="">Aadhar Number</label>
+                  <input
+                    type="text"
+                    value={applicantAadharNumber}
+                    onChange={(e) => setApplicantAadharNumber(e.target.value)}
+                  />
+                  <h3>Upload Applicant Aadhar</h3>
+                  {/* <progress value={progressAadhar} max="100" /> */}
+                  <input
+                    onChange={handleApplicantAadharUpload}
+                    type="file"
+                    className="form__inputnone"
+                    name=""
+                    id=""
+                  />
+                  <button onClick={ApplicantAadharUpload}>Upload</button>
+                </div>
+                <div>
+                  <label htmlFor="">PAN Number</label>
+                  <input
+                    type="text"
+                    value={applicantPanNumber}
+                    onChange={(e) => setApplicantPanNumber(e.target.value)}
+                  />
+                  <h3>Upload Applicant PAN</h3>
+                  <input
+                    onChange={handleApplicantPANUpload}
+                    type="file"
+                    className="form__inputnone"
+                    name=""
+                    id=""
+                  />
+                  <button onClick={ApplicantPANUpload}>Upload</button>
+                </div>
+              </div>
+              <div className="applicantinfo__name">
+                <label htmlFor="">Co-Applicant Name</label>
+                <input
+                  type="text"
+                  value={coApplicantName}
+                  onChange={(e) => setCoApplicantName(e.target.value)}
+                />
+              </div>
+              <div className="applicantinfo__coApplicantinfo">
+                <div>
+                  <label htmlFor="">Co-Applicant Aadhar Number</label>
+                  <input
+                    type="text"
+                    value={coApplicantAadharNumber}
+                    onChange={(e) => setCoApplicantAadharNumber(e.target.value)}
+                  />
+                  <h4>Upload Co-Applicant Aadhar</h4>
+                  <input
+                    onChange={handleCoApplicantAadharUpload}
+                    type="file"
+                    className="form__inputnone"
+                    name=""
+                    id=""
+                  />
+                  <button onClick={CoApplicantAadharUpload}>Upload</button>
+                </div>
+                <div>
+                  <label htmlFor="">Co-Applicant PAN Number</label>
+                  <input
+                    type="text"
+                    value={coApplicantPanNumber}
+                    onChange={(e) => setCoApplicantPanNumber(e.target.value)}
+                  />
+                  <h3>Upload Co-Applicant PAN</h3>
+                  <input
+                    onChange={handleCoApplicantPANUpload}
+                    type="file"
+                    className="form__inputnone"
+                    name=""
+                    id=""
+                  />
+                  <button onClick={CoApplicantPANUpload}>Upload</button>
+                </div>
+              </div>
+            </div>
+            <p>
+              (Note :- Please submit a copy of Aadhaar Card & PAN Card for both
+              applicants.)
+            </p>
+            <div className="applicantinfo__bottom">
+              <label htmlFor="">Address:-</label>
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+              <div>
+                Submit Address Proof
+                <h3>Upload Address proof</h3>
+                <input
+                  onChange={handleAddressProofUpload}
+                  type="file"
+                  className="form__inputnone"
+                  name=""
+                  id=""
+                />
+                <button onClick={AddressProofUpload}>Upload</button>
+              </div>
+            </div>
+            <div className="applicantinfo__state">
+              <div>
+                <label htmlFor="">City</label>
+                <input
+                  type="text"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="">State</label>
+                <input
+                  type="text"
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="">Pin Code</label>
+                <input
+                  type="text"
+                  value={pincode}
+                  onChange={(e) => setPinCode(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="applicantinfo__dateOfBirth">
+              <div>
+                <label htmlFor="">Date of Birth</label>
+                <input
+                  style={{ "min-height": "2rem" }}
+                  type="date"
+                  value={applicantDateOFBirth}
+                  onChange={(e) => setApplicantDateOFBirth(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="">EMAIL</label>
+                <input
+                  type="email"
+                  value={applicantEmail}
+                  onChange={(e) => setApplicantEmail(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="applicantinfo__homePhone">
+              <div>
+                <label htmlFor="">Home Phone</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                  value={applicantHomePhone}
+                  onChange={(e) => setApplicantHomePhone(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="">Mobile: +91</label>
+                <input
+                  type="tel"
+                  value={applicantMobile}
+                  onChange={(e) => setApplicantMobile(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="">Work Phone</label>
+                <input
+                  type="tel"
+                  value={applicantWorkPhone}
+                  onChange={(e) => setApplicantWorkPhone(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="distributorshippingaddress">
+            <h1>Distributor Shipping Address</h1>
+            <div className="distributorshippingaddress__wrapper">
+              <div>
+                <label htmlFor="">Address</label>
+                <input
+                  type="text"
+                  value={distributorShippingAddress}
+                  onChange={(e) =>
+                    setDistributorShippingAddress(e.target.value)
+                  }
+                />
+              </div>
+              <div className="distributorshippingaddress__address">
+                <div>
+                  <label htmlFor="">City</label>
+                  <input
+                    type="text"
+                    value={distributorCity}
+                    onChange={(e) => setDistributorCity(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="">State</label>
+                  <input
+                    type="text"
+                    value={distributorState}
+                    onChange={(e) => setDistributorState(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="">Pin Code</label>
+                  <input
+                    type="text"
+                    value={distributorPinCode}
+                    onChange={(e) => setDistributorPinCode(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="enrollerinformation">
+            <h1>Enroller Information</h1>
+            <div className="enrollerinformation__wrapper">
+              <div>
+                <label htmlFor="">Enroller's id</label>
+                <input
+                  type="text"
+                  value={enrollerid}
+                  onChange={(e) => setEnrollerId(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="">Name</label>
+                <input
+                  type="text"
+                  value={enrollerName}
+                  onChange={(e) => setEnrollerName(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="sponserinformation">
+            <h1>Sponser Information</h1>
+            <div className="sponserinformation__wrapper">
+              <div>
+                <label htmlFor="">Sponser's id</label>
+                <input
+                  type="text"
+                  value={sponserId}
+                  onChange={(e) => setSponserId(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="">Name</label>
+                <input
+                  type="text"
+                  value={sponserName}
+                  onChange={(e) => setSponserName(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="commisionpaymentinformation">
+            <h1>Commision Payment Information</h1>
+            <div className="commisionpaymentinformation__wrapper1">
+              <div>
+                <label htmlFor="">Name of the Bank</label>
+                <input
+                  type="text"
+                  value={nameoftheBank}
+                  onChange={(e) => setNameOfTheBank(e.target.value)}
+                />
+                <div className="commisionpaymentinformation__wrapper">
+                  <div>
+                    <label htmlFor="">Branch Name & Address</label>
+                    <input
+                      type="text"
+                      value={branchNameAddress}
+                      onChange={(e) => setBranchNameAddress(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="">Account Number</label>
+                    <input
+                      type="text"
+                      value={accountNumber}
+                      onChange={(e) => setAccountNumber(e.target.value)}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="">Bank IFSC Code:</label>
+                    <input
+                      type="text"
+                      value={bankIFSCCode}
+                      onChange={(e) => setBankIFSCCode(e.target.value)}
+                    />
+                    <p>
+                      Please attach copy of cancelled cheque or bank passbook
+                    </p>
+                    <div className="commisionpaymentinformation__upload">
+                      <input
+                        onChange={handleChequeOrPassbookUpload}
+                        type="file"
+                        className="form__inputnone"
+                        name=""
+                        id=""
+                      />
+                      <button onClick={ApplicantChequeOrPassbookUpload}>
+                        Upload
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="final__signature">
+            <div>
+              <h3>Applicant Signature</h3>
+              <p>Upload Applicant Signature</p>
+              <input
+                onChange={handleApplicantSignatureUpload}
+                type="file"
+                className="form__inputnone"
+                name=""
+                id=""
+              />
+              <button onClick={ApplicantSignatureUpload}>Upload</button>
+            </div>
+
+            <div>
+              <h3> Co-Applicant Signature</h3>
+              <p>Upload Co-Applicant Signature</p>
+              <input
+                onChange={handleCoApplicantSignatureUpload}
+                type="file"
+                className="form__inputnone"
+                name=""
+                id=""
+              />
+              <button onClick={CoApplicantSignatureUpload}>Upload</button>
+            </div>
+          </div>
+          <div className="undertaking">
+            <p>UnderTaking</p>
+            <div className="undertaking__wrapper">
+              <p>
+                I am willingly joining the business opportunity provided 
+                by ForLife Trading India Pvt Ltd. of selling its products .Current I am not an active 4Life Distributor
+                . I Have read  the terms and conditions of the Distributor 
+                Agreement printed overleaf and understand the Policies and Procedures .        beliel
+              </p>
+            </div>
+          </div>
+          <button
+            className="final__submit"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
