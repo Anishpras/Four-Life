@@ -636,7 +636,9 @@ const ApplicationForm = () => {
                   name=""
                   id=""
                 />
-                <button onClick={profileImageUpload}>Upload</button>
+                <button onClick={profileImageUpload}>
+                  {profileImageUrl === "" ? `Upload` : `Uploaded`}
+                </button>
                 <progress
                   value={profileImageUploadProgress}
                   className="imageupload__progress"
