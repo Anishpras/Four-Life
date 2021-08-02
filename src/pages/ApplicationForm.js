@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import firebase from "firebase";
 import { db, storage } from "../firebase";
 import "./Application.scss";
+import Avatar from "../assets/avatar.jpeg";
 const ApplicationForm = () => {
   const [profileImage, setProfileImage] = useState(null);
-  // const [progress, setProgress] = useState(0);
-  // const [progressAadhar, setProgressAadhar] = useState(0);
   const [applicantAadhar, setApplicantAadhar] = useState(null);
   const [applicantPAN, setApplicantPAN] = useState(null);
   const [coApplicantAadhar, setCoApplicantAadhar] = useState(null);
@@ -84,8 +83,36 @@ const ApplicationForm = () => {
   const [applicantChequeOrPassbookString, setApplicantChequeOrPassbookString] =
     useState("");
 
-  console.log(profileImageUrl);
-  console.log(profileImage);
+  const [profileImageUploadProgress, setProfileImageUploadProgress] =
+    useState(0);
+  const [
+    applicantAadharImageUploadProgress,
+    setApplicantAadharImageUploadProgress,
+  ] = useState(0);
+  const [applicantPanImageUploadProgress, setApplicantPanImageUploadProgress] =
+    useState(0);
+  const [
+    coApplicantAadharImageUploadProgress,
+    setCoApplicantAadharImageUploadProgress,
+  ] = useState(0);
+  const [
+    coApplicantPANImageUploadProgress,
+    setCoApplicantPANImageUploadProgress,
+  ] = useState(0);
+  const [addressImageUploadProgress, setAddressImageUploadProgress] =
+    useState(0);
+  const [bankImageUploadProgress, setBankImageUploadProgress] = useState(0);
+  const [
+    applicantSignatureImageUploadProgress,
+    setApplicantSignatureImageUploadProgress,
+  ] = useState(0);
+  const [
+    coApplicantSignatureImageUploadProgress,
+    setCoApplicantSignatureImageUploadProgress,
+  ] = useState(0);
+
+  // console.log(profileImageUrl);
+  // console.log(profileImage);
   const handleProfileUpload = (e) => {
     if (e.target.files[0]) {
       setProfileImage(e.target.files[0]);
@@ -166,7 +193,12 @@ const ApplicationForm = () => {
 
     uploadProfileImageTask.on(
       "state_changed",
-      (snapshot) => {},
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProfileImageUploadProgress(progress);
+      },
       (error) => {
         // Error function ...
         console.log(error);
@@ -193,7 +225,12 @@ const ApplicationForm = () => {
 
     uploadProfileImageTask.on(
       "state_changed",
-      (snapshot) => {},
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setApplicantAadharImageUploadProgress(progress);
+      },
       (error) => {
         // Error function ...
         console.log(error);
@@ -220,7 +257,12 @@ const ApplicationForm = () => {
 
     uploadProfileImageTask.on(
       "state_changed",
-      (snapshot) => {},
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setApplicantPanImageUploadProgress(progress);
+      },
       (error) => {
         // Error function ...
         console.log(error);
@@ -247,7 +289,12 @@ const ApplicationForm = () => {
 
     uploadProfileImageTask.on(
       "state_changed",
-      (snapshot) => {},
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setCoApplicantAadharImageUploadProgress(progress);
+      },
       (error) => {
         // Error function ...
         console.log(error);
@@ -274,7 +321,12 @@ const ApplicationForm = () => {
 
     uploadProfileImageTask.on(
       "state_changed",
-      (snapshot) => {},
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setCoApplicantPANImageUploadProgress(progress);
+      },
       (error) => {
         // Error function ...
         console.log(error);
@@ -302,7 +354,12 @@ const ApplicationForm = () => {
 
     uploadProfileImageTask.on(
       "state_changed",
-      (snapshot) => {},
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setAddressImageUploadProgress(progress);
+      },
       (error) => {
         // Error function ...
         console.log(error);
@@ -329,7 +386,12 @@ const ApplicationForm = () => {
 
     uploadProfileImageTask.on(
       "state_changed",
-      (snapshot) => {},
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setApplicantSignatureImageUploadProgress(progress);
+      },
       (error) => {
         // Error function ...
         console.log(error);
@@ -356,7 +418,12 @@ const ApplicationForm = () => {
 
     uploadProfileImageTask.on(
       "state_changed",
-      (snapshot) => {},
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setCoApplicantSignatureImageUploadProgress(progress);
+      },
       (error) => {
         // Error function ...
         console.log(error);
@@ -385,7 +452,12 @@ const ApplicationForm = () => {
 
     uploadProfileImageTask.on(
       "state_changed",
-      (snapshot) => {},
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setBankImageUploadProgress(progress);
+      },
       (error) => {
         // Error function ...
         console.log(error);
@@ -408,6 +480,7 @@ const ApplicationForm = () => {
     e.preventDefault();
     // setLoader(true);
     let DistributorID = generateString(10);
+
     console.log(DistributorID);
     db.collection("applications")
       .add({
@@ -458,17 +531,14 @@ const ApplicationForm = () => {
       })
       .then(() => {
         // setLoader(false);
-        alert("Your Application has been submitted👍");
+        alert(
+          `Your Application has been submitted👍. Your unique distributor id is ${DistributorID}. Please note it down for any future reference. It will only appear for once.`
+        );
       })
       .catch((error) => {
         alert(error.message);
         // setLoader(false);
       });
-
-    // setName("");
-    // setEmail("");
-    // setProblem("");
-    // setContact("");
   };
 
   return (
@@ -476,7 +546,7 @@ const ApplicationForm = () => {
       <div className="header">
         <div className="header__left">
           <h2>4Life</h2>
-{/*          <span>
+          {/*          <span>
             <a href="www.india.4life.com">www.india.4life.com</a>
 </span> */}
         </div>
@@ -510,8 +580,7 @@ const ApplicationForm = () => {
                   Have you ever held a 4life distributor ID?{" "}
                 </label>
                 <select
-                  onChange={(e) => setDistributor_Id_checked(e.target.value)}
-                >
+                  onChange={(e) => setDistributor_Id_checked(e.target.value)}>
                   <option value="no">No</option>
                   <option value="yes">Yes</option>
                 </select>
@@ -554,8 +623,10 @@ const ApplicationForm = () => {
               <h3>Upload Profile Image</h3>
               <img
                 className="form__firstImg"
-                src={profileImageUrl}
-                alt="Upload Profile Image"
+                src={
+                  profileImageUrl === "" ? `${Avatar}` : `${profileImageUrl}`
+                }
+                alt=""
               />
               <div className="form__firstpartbutton">
                 <input
@@ -566,6 +637,11 @@ const ApplicationForm = () => {
                   id=""
                 />
                 <button onClick={profileImageUpload}>Upload</button>
+                <progress
+                  value={profileImageUploadProgress}
+                  className="imageupload__progress"
+                  max="100"
+                />
               </div>
             </div>
           </div>
@@ -602,6 +678,11 @@ const ApplicationForm = () => {
                     id=""
                   />
                   <button onClick={ApplicantAadharUpload}>Upload</button>
+                  <progress
+                    value={applicantAadharImageUploadProgress}
+                    className="imageupload__progress"
+                    max="100"
+                  />
                 </div>
                 <div>
                   <label htmlFor="">PAN Number</label>
@@ -619,6 +700,11 @@ const ApplicationForm = () => {
                     id=""
                   />
                   <button onClick={ApplicantPANUpload}>Upload</button>
+                  <progress
+                    value={applicantPanImageUploadProgress}
+                    className="imageupload__progress"
+                    max="100"
+                  />
                 </div>
               </div>
               <div className="applicantinfo__name">
@@ -637,7 +723,7 @@ const ApplicationForm = () => {
                     value={coApplicantAadharNumber}
                     onChange={(e) => setCoApplicantAadharNumber(e.target.value)}
                   />
-                  <h4>Upload Co-Applicant Aadhar</h4>
+                  <h3>Upload Co-Applicant Aadhar</h3>
                   <input
                     onChange={handleCoApplicantAadharUpload}
                     type="file"
@@ -646,6 +732,11 @@ const ApplicationForm = () => {
                     id=""
                   />
                   <button onClick={CoApplicantAadharUpload}>Upload</button>
+                  <progress
+                    value={coApplicantAadharImageUploadProgress}
+                    className="imageupload__progress"
+                    max="100"
+                  />
                 </div>
                 <div>
                   <label htmlFor="">Co-Applicant PAN Number</label>
@@ -663,6 +754,11 @@ const ApplicationForm = () => {
                     id=""
                   />
                   <button onClick={CoApplicantPANUpload}>Upload</button>
+                  <progress
+                    value={coApplicantPANImageUploadProgress}
+                    className="imageupload__progress"
+                    max="100"
+                  />
                 </div>
               </div>
             </div>
@@ -678,7 +774,6 @@ const ApplicationForm = () => {
                 onChange={(e) => setAddress(e.target.value)}
               />
               <div>
-                Submit Address Proof
                 <h3>Upload Address proof</h3>
                 <input
                   onChange={handleAddressProofUpload}
@@ -688,6 +783,11 @@ const ApplicationForm = () => {
                   id=""
                 />
                 <button onClick={AddressProofUpload}>Upload</button>
+                <progress
+                  value={addressImageUploadProgress}
+                  className="imageupload__progress"
+                  max="100"
+                />
               </div>
             </div>
             <div className="applicantinfo__state">
@@ -898,6 +998,11 @@ const ApplicationForm = () => {
                       <button onClick={ApplicantChequeOrPassbookUpload}>
                         Upload
                       </button>
+                      <progress
+                        value={bankImageUploadProgress}
+                        className="imageupload__progress"
+                        max="100"
+                      />
                     </div>
                   </div>
                 </div>
@@ -916,6 +1021,11 @@ const ApplicationForm = () => {
                 id=""
               />
               <button onClick={ApplicantSignatureUpload}>Upload</button>
+              <progress
+                value={applicantSignatureImageUploadProgress}
+                className="imageupload__progress"
+                max="100"
+              />
             </div>
 
             <div>
@@ -929,24 +1039,35 @@ const ApplicationForm = () => {
                 id=""
               />
               <button onClick={CoApplicantSignatureUpload}>Upload</button>
+              <progress
+                value={coApplicantSignatureImageUploadProgress}
+                className="imageupload__progress"
+                max="100"
+              />
             </div>
           </div>
           <div className="undertaking">
-            <p>UnderTaking</p>
+            <p>Undertaking</p>
             <div className="undertaking__wrapper">
               <p>
-                I am willingly joining the business opportunity provided 
-                by ForLife Trading India Pvt Ltd. of selling its products .Current I am not an active 4Life Distributor
-                . I Have read  the terms and conditions of the Distributor 
-                Agreement printed overleaf and understand the Policies and Procedures .        beliel
+                * I am willingly joining the business opportunity provided by
+                four life trading India Private Limited of selling its products.
+                Currently, I am not an active for life distributor. I have read
+                the terms and conditions of the distributor ship agreement
+                printed overleaf and understand the policies and procedures that
+                is also available at http://india–life.com in “resources”
+                section and I agree to abide by them.
+              </p>
+              <p>
+                * I solemnly declare that the information given above is correct
+                and complete to the best of my knowledge and belief.
               </p>
             </div>
           </div>
           <button
             className="final__submit"
             type="submit"
-            onClick={handleSubmit}
-          >
+            onClick={handleSubmit}>
             Submit
           </button>
         </form>

@@ -68,6 +68,7 @@
   }
   &__firstpartbutton {
     display: flex;
+    flex-direction: column;
   }
   &__firstPartLeft {
     display: flex;
@@ -207,14 +208,17 @@
     font-size: 18px;
   }
   .undertaking {
-    padding:10px 0px ;
+    padding: 10px 0px;
     display: flex;
     align-items: center;
-    p{
+    p {
       padding: 0px 14px;
     }
     &__wrapper {
       border: 1px solid;
     }
   }
+}
+.imageupload__progress {
+  width: 100%;
 }
