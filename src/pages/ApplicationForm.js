@@ -636,7 +636,9 @@ const ApplicationForm = () => {
                   name=""
                   id=""
                 />
-                <button onClick={profileImageUpload}>Upload</button>
+                <button onClick={profileImageUpload}>
+                  {profileImageUrl === "" ? `Upload` : `Uploaded`}
+                </button>
                 <progress
                   value={profileImageUploadProgress}
                   className="imageupload__progress"
@@ -773,7 +775,7 @@ const ApplicationForm = () => {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
-              <div>
+              <div className="applicantinfo__proof" >
                 <h3>Upload Address proof</h3>
                 <input
                   onChange={handleAddressProofUpload}
