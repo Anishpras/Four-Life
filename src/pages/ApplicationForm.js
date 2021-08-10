@@ -545,7 +545,7 @@ const ApplicationForm = () => {
     <div className="form">
       <div className="header">
         <div className="header__left">
-          <h2>4Life</h2>
+          <h2>Zelante Life Care</h2>
           {/*          <span>
             <a href="www.india.4life.com">www.india.4life.com</a>
 </span> */}
@@ -556,7 +556,7 @@ const ApplicationForm = () => {
           <h1>India Distributor Application and Agreement</h1>
           <div className="header__rightWrapper">
             <p>
-              <h2>FORLIFE TRADING INDIA PVT.LTD.</h2>
+              <h2>FZelante Life Care PVT.LTD.</h2>
               <span>
                 Office No.808, 6th Floor, A Wing, Kanakia Wall Street,
               </span>
