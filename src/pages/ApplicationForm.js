@@ -556,15 +556,15 @@ const ApplicationForm = () => {
           <h1>India Distributor Application and Agreement</h1>
           <div className="header__rightWrapper">
             <p>
-              <h2>FZelante Life Care PVT.LTD.</h2>
+              <h2>Zelante Life Care PVT.LTD.</h2>
               <span>
                 Office No.808, 6th Floor, A Wing, Kanakia Wall Street,
               </span>
               <span> Andheri Kurta Road,Andhari(East),Mumbai-400 093</span>
             </p>
             <p>
-              <span>Toll Free: 1800-102-0502</span>
-              <span>BoardLine:022-2093-2700 </span>
+              <span>Toll Free: 00000000</span>
+              <span>BoardLine:0000-0000-0000 </span>
               <span> </span>
               <span></span>
             </p>
