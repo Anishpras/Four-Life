@@ -1,11 +1,14 @@
 .form {
+  margin-left: 10%; 
+  margin-right: 15%; 
   isplay: flex;
   flex-direction: column;
-  width: 92vw;
+  width: 80%;
   padding: 45px;
   &__inputnone {
     border: none;
     border-bottom: none !important;
+    
   }
   input {
     border: none;
@@ -23,6 +26,7 @@
     }
     &__right {
       float: right;
+      // margin: -15;
     }
     &__rightWrapper {
       display: flex;
@@ -35,15 +39,20 @@
       }
     }
   }
+  .header_name {
+    margin-right: 24vw;
+  }
   h1 {
     background-color: #4546d5;
     color: white;
-    width: 75vw;
+    // width: 75vw;
     /* display: flex; */
     /* align-items: end; */
-    /* justify-content: center; */
     padding: 3px 10px;
     border-radius: 10px;
+    justify-content: center;
+
+    
   }
   &__FormWrapper {
   }
@@ -64,7 +73,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
+    // width: 50%;
+    
   }
   &__firstpartbutton {
     display: flex;
@@ -251,4 +261,19 @@
   margin: 16px 0px;
   flex-direction: column;
 }
+}
+
+.company_name {
+  font-weight: 900;
+  font-size: 23px;
+  margin-top: -10px;
+  text-align: center;
+  margin-right: 10vw;
+
+}
+.company_addres{
+  text-align: center;
+  margin-right: 10vw;
+
+ 
 }
