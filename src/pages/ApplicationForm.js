@@ -3,6 +3,7 @@ import firebase from "firebase";
 import { db, storage } from "../firebase";
 import "./Application.scss";
 import Avatar from "../assets/avatar.jpeg";
+import logo from "../assets/logo.png";
 const ApplicationForm = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [applicantAadhar, setApplicantAadhar] = useState(null);
@@ -545,7 +546,9 @@ const ApplicationForm = () => {
     <div className="form">
       <div className="header">
         <div className="header__left">
-          <h2>Zelante Life Care</h2>
+          <img src={logo} style={{width:150, marginTop: -15}} />
+       
+        
           {/*          <span>
             <a href="www.india.4life.com">www.india.4life.com</a>
 </span> */}
@@ -553,18 +556,19 @@ const ApplicationForm = () => {
 
         <div className="header__right">
           {" "}
-          <h1>India Distributor Application and Agreement</h1>
+          <h1 className="header_name">India Distributor Application and Agreement</h1>
           <div className="header__rightWrapper">
             <p>
-              <h2>Zelante Life Care PVT.LTD.</h2>
-              <span>
-                Office No.808, 6th Floor, A Wing, Kanakia Wall Street,
-              </span>
-              <span> Andheri Kurta Road,Andhari(East),Mumbai-400 093</span>
+              
+           <span className="company_name">Zelante Life Care PVT.LTD.</span>
+              <span className="company_addres">
+               A unit of <br></br>WELAWAY MARKETERS AND DEVELOPERS PVT.LTD. <br> 
+               </br> Office - Dubhal, Near D.P.D. College of Educaton, PO-Chandchaus, PS-Magadh Medical College, Dist-Gaya 
+               (Bihar) 82300</span>
             </p>
             <p>
-              <span>Toll Free: 00000000</span>
-              <span>BoardLine:0000-0000-0000 </span>
+              <span>Office No : 8544398701</span>
+              <span>Email : Zelantelifecare@gmail.com </span>
               <span> </span>
               <span></span>
             </p>
@@ -1053,12 +1057,10 @@ const ApplicationForm = () => {
             <div className="undertaking__wrapper">
               <p>
                 * I am willingly joining the business opportunity provided by
-                four life trading India Private Limited of selling its products.
-                Currently, I am not an active for life distributor. I have read
-                the terms and conditions of the distributor ship agreement
-                printed overleaf and understand the policies and procedures that
-                is also available at http://india–life.com in “resources”
-                section and I agree to abide by them.
+                Zelante Life Care (A unit of WELAWAY MARKETERS AND DEVELOPERS PVT.LTD.) of selling its products.
+                Currently, I am not an active  Zelante Life Care (A unit of WELAWAY MARKETERS AND DEVELOPERS PVT.LTD.) distributor. I have read
+                the terms and conditions of the Distributor ship Agreement
+                printed overleaf and understand the Policies and Procedures.
               </p>
               <p>
                 * I solemnly declare that the information given above is correct
