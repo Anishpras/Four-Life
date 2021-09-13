@@ -546,7 +546,7 @@ const ApplicationForm = () => {
     <div className="form">
       <div className="header">
         <div className="header__left">
-          <img src={logo} style={{width:150, marginTop: -15}} />
+          <img src={logo} style={{width:150, marginTop: -15}} alt="logo"/>
        
         
           {/*          <span>
@@ -581,7 +581,7 @@ const ApplicationForm = () => {
             <div className="form__firstPartLeft">
               <div className="form__firstPartleftTop">
                 <label htmlFor="4life_distributor_ID_check">
-                  Have you ever held a 4life distributor ID?{" "}
+                  Have you ever held a Zelante distributor ID?{" "}
                 </label>
                 <select
                   onChange={(e) => setDistributor_Id_checked(e.target.value)}>
