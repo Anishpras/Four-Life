@@ -560,7 +560,7 @@ const ApplicationForm = () => {
           <div className="header__rightWrapper">
             <p>
               
-           <span className="company_name">Zelante Life Care PVT.LTD.</span>
+           <span className="company_name">Zelante Life Care</span>
               <span className="company_addres">
                A unit of <br></br>WELAWAY MARKETERS AND DEVELOPERS PVT.LTD. <br> 
                </br> Office - Dubhal, Near D.P.D. College of Educaton, PO-Chandchaus, PS-Magadh Medical College, Dist-Gaya 
